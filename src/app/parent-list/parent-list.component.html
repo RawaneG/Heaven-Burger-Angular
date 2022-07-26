@@ -1,0 +1,12 @@
+<div class="container-fluid d-flex justify-content-evenly flex-wrap">
+    <h1 class="my-5 text-center">Mes Burgers</h1>
+    <div class="d-flex justify-content-evenly flex-wrap">
+        <app-my-first *ngFor="let unProduit of mesBurgers" [burger] = "unProduit"></app-my-first>
+    </div>
+</div>
+<div class="container-fluid d-flex justify-content-evenly flex-wrap">
+    <h1 class="my-5 text-center">Mes Menus</h1>
+    <div class="d-flex justify-content-evenly flex-wrap">
+        <app-my-second *ngFor="let unProduit of mesMenus" [menu] = "unProduit"></app-my-second>
+    </div>
+</div>

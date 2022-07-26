@@ -1,0 +1,9 @@
+<body class="m-5">
+    <div class="card" [routerLink]="['/menu', menu.id]">
+        <img class="card-img-top" src="{{'data:image/png;base64,' + menu.image}}" alt="Title">
+        <div class="card-body">
+            <h4 class="card-title">{{menu.nom | titlecase}}</h4>
+            <p class="card-text">{{menu.prix}} FCFA</p>
+        </div>
+    </div>
+</body>
