@@ -1,5 +1,5 @@
-<body class="m-5">
-    <div class="card" [routerLink]="['/menu', menu.id]">
+<body class="mx-3 my-5">
+    <div class="card" [routerLink]="['/menu', menu.id]" style="width: 18rem;">
         <img class="card-img-top" src="{{'data:image/png;base64,' + menu.image}}" alt="Title">
         <div class="card-body">
             <h4 class="card-title">{{menu.nom | titlecase}}</h4>

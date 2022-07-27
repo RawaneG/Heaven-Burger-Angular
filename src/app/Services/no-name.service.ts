@@ -21,7 +21,8 @@ export class NoNameService
 
     getBurgerById(id : number) : any
     {
-      return this.mesBurgers.find(param => param.id === id);
+
+      console.log(this.mesBurgers.find(param => param.id === id));
     }
 
     getAllBurgers() : Produit[]

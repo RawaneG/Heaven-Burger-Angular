@@ -19,6 +19,7 @@ export class BurgerDetailComponent implements OnInit {
   {
     this.parameter = +this.route.snapshot.params['id'];
     this.monBurger = this.httpService.getBurgerById(this.parameter);
+
     if(this.monBurger === undefined)
     {
       this.router.navigateByUrl('catalogue');
