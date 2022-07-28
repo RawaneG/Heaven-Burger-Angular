@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from '../Services/cart.service';
 import { HttpClientService } from '../Services/http-client.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class MenuDetailComponent implements OnInit {
   monMenu !: any;
   parameter !: number;
 
-  constructor(private route : ActivatedRoute, private router : Router, private httpService : HttpClientService) {}
+  constructor(private route : ActivatedRoute, private router : Router, private httpService : HttpClientService, private cartService : CartService) {}
 
   ngOnInit(): void
   {

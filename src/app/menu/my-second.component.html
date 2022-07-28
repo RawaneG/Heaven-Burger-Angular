@@ -6,4 +6,7 @@
             <p class="card-text">{{menu.prix}} FCFA</p>
         </div>
     </div>
+    <div class="card-buttons">
+        <button [routerLink]="['/menu', menu.id]"><i class="fas fa-eye"></i></button>
+    </div>
 </body>
