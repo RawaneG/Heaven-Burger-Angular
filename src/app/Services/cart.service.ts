@@ -23,7 +23,9 @@ export class CartService
     }
     this._itemsSubject.next(existingCartItems);
   }
-
+  /*
+    * Ajouter au Panier
+  */
   addToCart(productParam: Produit)
   {
     this.items$.pipe(
@@ -36,7 +38,9 @@ export class CartService
       }),
     ).subscribe();
   }
-
+  /*
+    * Transformation de L'observable en Tableau
+  */
   transitionTab()
   {
     this.items$.subscribe(valeur =>
@@ -45,19 +49,25 @@ export class CartService
       })
     return this.tableau;
   }
-
+  /*
+    * Sauvegarde automatique dans le LocalStorage
+  */
   saveEtat() : void
   {
     localStorage.setItem('produits', JSON.stringify(this.transitionTab()))
   }
-
+  /*
+    * Suppression d'un Produit du Panier
+  */
   removeElement(parametre : any)
   {
     this.objet = this.transitionTab().find(valeur => valeur.id === parametre.id)
     this.transitionTab().splice(this.objet, 1);
     this.saveEtat();
   }
-
+  /*
+    * Update de l'attribut quantité dans le localStorage
+  */
   amount(param : Produit, value : any)
   {
     this.items$.pipe(
@@ -75,7 +85,9 @@ export class CartService
       }),
     ).subscribe();
   }
-
+  /*
+    * Incrémentation du Prix total
+  */
   ajoutTotal()
   {
     let total = 0;
