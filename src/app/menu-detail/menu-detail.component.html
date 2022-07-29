@@ -8,7 +8,7 @@
             <p>Ici se trouve la description de votre produit</p>
             <p>Ici se trouve la description de votre produit</p>
         </div>
-        <button>Ajouter au Panier</button>
+        <button (click)="addToCart(monMenu)">Ajouter au Panier</button>
     </div>
     <div class="right d-flex flex-column align-items-center justify-content-evenly">
         <img src="{{'data:image/png;base64,' + monMenu.image}}" alt="produit-image">

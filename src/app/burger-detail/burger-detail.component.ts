@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Produit } from '../models/first-model.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientService } from '../Services/http-client.service';
+import { CartService } from '../Services/cart.service';
 
 @Component({
   selector: 'app-burger-detail',
@@ -12,8 +12,31 @@ export class BurgerDetailComponent implements OnInit {
 
   monBurger !: any;
   parameter !: number;
+  ajoutee !: any;
 
-  constructor(private route : ActivatedRoute, private router : Router, private httpService : HttpClientService) {}
+
+  constructor(private route : ActivatedRoute, private router : Router, private httpService : HttpClientService, private cartService: CartService) {}
+
+  addToCart(product : any)
+  {
+    this.cartService.items$.subscribe
+    (
+      value =>
+      {
+        this.ajoutee = value.find(prod => prod.id === product.id);
+        if (this.ajoutee === undefined)
+        {
+          this.cartService.addToCart(product);
+        }
+        else
+        {
+          this.ajoutee = value.find(prod => prod.id === product.id);
+          this.ajoutee.quantite++;
+          this.cartService.saveEtat();
+        }
+      }
+    );
+  }
 
   ngOnInit(): void
   {

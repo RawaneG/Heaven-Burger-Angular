@@ -8,7 +8,8 @@ import { CartService } from '../Services/cart.service';
   templateUrl: './my-second.component.html',
   styleUrls: ['./my-second.component.scss']
 })
-export class MySecondComponent implements OnInit {
+export class MySecondComponent implements OnInit
+{
   clicked : boolean = false;
   @Input() menu!: Produit;
   constructor(private cartService: CartService) { }

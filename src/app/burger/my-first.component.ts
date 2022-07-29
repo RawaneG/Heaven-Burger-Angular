@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Produit } from '../models/first-model.model';
 import { CartService } from '../Services/cart.service';
 
+
 @Component(
 {
   selector: 'app-my-first',
@@ -10,12 +11,28 @@ import { CartService } from '../Services/cart.service';
 })
 export class MyFirstComponent implements OnInit
 {
-  clicked : boolean = false;
   @Input() burger!: Produit;
+  ajoutee !: any;
   constructor(private cartService: CartService) { }
   ngOnInit() {}
-  addToCart(product : any)
+  addToCart(product : Produit)
   {
-    this.cartService.addToCart(product);
+    this.cartService.items$.subscribe
+    (
+      value =>
+      {
+        this.ajoutee = value.find(prod => prod.id === product.id);
+        if (this.ajoutee === undefined)
+        {
+          this.cartService.addToCart(product);
+        }
+        else
+        {
+          this.ajoutee = value.find(prod => prod.id === product.id);
+          this.ajoutee.quantite++;
+          this.cartService.saveEtat();
+        }
+      }
+    );
   }
 }

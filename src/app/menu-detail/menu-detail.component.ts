@@ -12,8 +12,31 @@ export class MenuDetailComponent implements OnInit {
 
   monMenu !: any;
   parameter !: number;
+  ajoutee !: any;
+
 
   constructor(private route : ActivatedRoute, private router : Router, private httpService : HttpClientService, private cartService : CartService) {}
+
+  addToCart(product : any)
+  {
+    this.cartService.items$.subscribe
+    (
+      value =>
+      {
+        this.ajoutee = value.find(prod => prod.id === product.id);
+        if (this.ajoutee === undefined)
+        {
+          this.cartService.addToCart(product);
+        }
+        else
+        {
+          this.ajoutee = value.find(prod => prod.id === product.id);
+          this.ajoutee.quantite++;
+          this.cartService.saveEtat();
+        }
+      }
+    );
+  }
 
   ngOnInit(): void
   {

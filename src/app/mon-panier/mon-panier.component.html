@@ -13,7 +13,7 @@
                     <div *ngIf="(items$ | async).length === 0" class="text-center">
                       <h3>Votre Panier est Vide</h3>
                     </div>
-                    <div *ngFor="let item of (items$ | async); let i = index;" class="row mb-4 d-flex justify-content-between align-items-center">
+                    <div *ngFor="let item of (items$ | async)" class="row mb-4 d-flex justify-content-between align-items-center">
                     <hr class="my-4">
                       <div class="col-md-2 col-lg-2 col-xl-2">
                         <img src="{{'data:image/png;base64,' + item.image}}" class="img-fluid rounded-3">
@@ -25,7 +25,7 @@
                         <button (click)="amount(item,quantity.value);plusTotal()" class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                         <i class="fas fa-minus"></i>
                         </button>
-                        <input id="form1" min="1" name="quantity" #quantity value="1" type="number" class="form-control form-control-sm text-center" (change)="amount(item,quantity.value);plusTotal()"/>
+                        <input id="form1" min="1" name="quantity" #quantity value="1" type="number" class="form-control form-control-sm" (change)="amount(item,quantity.value);plusTotal()"/>
                         <button (click)="amount(item,quantity.value);plusTotal()" class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                         <i class="fas fa-plus"></i>
                         </button>
