@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Produit } from '../models/first-model.model';
+import { Menu, Produit } from '../models/first-model.model';
 import { CartService } from '../Services/cart.service';
 
 @Component(
@@ -11,7 +11,7 @@ import { CartService } from '../Services/cart.service';
 export class MySecondComponent implements OnInit
 {
   clicked : boolean = false;
-  @Input() menu!: Produit;
+  @Input() menu!: Menu;
   constructor(private cartService: CartService) { }
   ngOnInit(): void{}
 

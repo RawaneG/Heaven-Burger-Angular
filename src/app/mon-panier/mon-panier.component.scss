@@ -1,8 +1,8 @@
-@media (min-width: 1025px) {
-.h-custom {
-height: 100vh !important;
-}
-}
+// @media (min-width: 1025px) {
+// .h-custom {
+// height: 100vh !important;
+// }
+// }
 
 .card-registration .select-input.form-control[readonly]:not([disabled]) {
 font-size: 1rem;
@@ -36,4 +36,8 @@ border-bottom-right-radius: 16px;
 {
     border: none;
     background: none;
+}
+.border-dark
+{
+    box-shadow: lightgray 4px 4px 20px;
 }

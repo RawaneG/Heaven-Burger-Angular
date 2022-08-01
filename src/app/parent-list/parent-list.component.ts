@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../Services/http-client.service';
-import { Observable } from 'rxjs';
-import { Produit } from '../models/first-model.model';
+import { Menu, Produit } from '../models/first-model.model';
 
 @Component({
   selector: 'app-parent-list',
@@ -11,17 +10,17 @@ import { Produit } from '../models/first-model.model';
 export class ParentListComponent implements OnInit
 {
   mesBurgers !: Produit[];
-  mesMenus !: Produit[];
+  mesMenus !: Menu[];
 
   constructor(private httpService : HttpClientService) {}
 
   ngOnInit(): void
   {
-    this.httpService.getBurger().subscribe
+    this.httpService.getUrl(this.httpService.burgerUrl).subscribe
     (
       (reponse) => {this.mesBurgers = reponse}
     );
-    this.httpService.getMenu().subscribe
+    this.httpService.getUrl(this.httpService.menuUrl).subscribe
     (
       (reponse) => {this.mesMenus = reponse}
     );

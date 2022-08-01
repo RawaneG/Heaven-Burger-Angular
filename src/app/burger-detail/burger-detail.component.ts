@@ -32,7 +32,7 @@ export class BurgerDetailComponent implements OnInit {
         {
           this.ajoutee = value.find(prod => prod.id === product.id);
           this.ajoutee.quantite++;
-          this.cartService.saveEtat();
+          this.cartService.saveEtat('produits',this.cartService.items$);
         }
       }
     );
@@ -41,7 +41,7 @@ export class BurgerDetailComponent implements OnInit {
   ngOnInit(): void
   {
     this.parameter = +this.route.snapshot.params['id'];
-    this.monBurger = this.httpService.getBurgerById(this.parameter);
+    this.monBurger = this.httpService.getElementById(this.parameter, this.httpService.burgerUrl);
 
     if(this.monBurger === undefined)
     {

@@ -12,11 +12,11 @@ import { BurgerDetailComponent } from './burger-detail/burger-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { MonPanierComponent } from './mon-panier/mon-panier.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, MyFirstComponent, ParentListComponent, HeaderComponent, LandingPageComponent, MySecondComponent, MenuDetailComponent, BurgerDetailComponent, MonPanierComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, StoreModule.forRoot({}, {})],
+  imports: [BrowserModule,ReactiveFormsModule, AppRoutingModule, HttpClientModule, StoreModule.forRoot({}, {})],
   providers: [],
   bootstrap: [AppComponent]
 })

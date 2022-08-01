@@ -28,9 +28,8 @@ export class MyFirstComponent implements OnInit
         }
         else
         {
-          this.ajoutee = value.find(prod => prod.id === product.id);
           this.ajoutee.quantite++;
-          this.cartService.saveEtat();
+          this.cartService.saveEtat('produits',this.cartService.items$);
         }
       }
     );

@@ -13,7 +13,7 @@ const routes : Routes =
   {path: 'panier' , component: MonPanierComponent},
   {path: 'burger/:id' , component: BurgerDetailComponent},
   {path: 'menu/:id' , component: MenuDetailComponent},
-  {path: '**' , redirectTo: ''}
+  {path: '**' , redirectTo: 'catalogue'}
 ];
 
 @NgModule(

@@ -1,8 +1,9 @@
-<section class="h-100 h-custom">
+<body class="d-flex flex-column justify-content-evenly">
+  <section class="h-100 h-custom">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12">
-          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class="card card-registration card-registration-2" style="border-radius: 15px">
             <div class="card-body p-0">
               <div class="row g-0">
                 <div class="col-lg-8">
@@ -13,48 +14,91 @@
                     <div *ngIf="(items$ | async).length === 0" class="text-center">
                       <h3>Votre Panier est Vide</h3>
                     </div>
-                    <div *ngFor="let item of (items$ | async)" class="row mb-4 d-flex justify-content-between align-items-center">
-                    <hr class="my-4">
+                    <div *ngFor="let item of items$ | async" class="row mb-4 d-flex justify-content-between align-items-center">
+                      <hr class="my-4" />
                       <div class="col-md-2 col-lg-2 col-xl-2">
-                        <img src="{{'data:image/png;base64,' + item.image}}" class="img-fluid rounded-3">
+                        <img
+                          src="{{ 'data:image/png;base64,' + item.image }}"
+                          class="img-fluid rounded-3"
+                        />
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-3">
-                        <h6 class="text-black mb-0">{{item.nom}}</h6>
+                        <h6 class="text-black mb-0">{{ item.nom }}</h6>
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <button (click)="amount(item,quantity.value);plusTotal()" class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                        <i class="fas fa-minus"></i>
+                        <button (click)="amount(item, quantity.value); plusTotal()" class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" >
+                          <i class="fas fa-minus"></i>
                         </button>
-                        <input id="form1" min="1" name="quantity" #quantity value="1" type="number" class="form-control form-control-sm" (change)="amount(item,quantity.value);plusTotal()"/>
-                        <button (click)="amount(item,quantity.value);plusTotal()" class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                        <i class="fas fa-plus"></i>
+                        <input id="form1" min="1" name="quantity" #quantity value="1" type="number" class="form-control form-control-sm" (change)="amount(item, quantity.value); plusTotal()"/>
+                        <button (click)="amount(item, quantity.value); plusTotal()" class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                          <i class="fas fa-plus"></i>
                         </button>
                       </div>
                       <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1 d-flex justify-content">
-                        <h6 class="mb-0">{{item.prix}} FCFA</h6>
+                        <h6 class="mb-0">{{ item.prix }} FCFA</h6>
                         <div>
-                          <h6 class="mb-0">{{item.quantite * item.prix}} FCFA</h6>
+                          <h6 class="mb-0">
+                            {{ item.quantite * item.prix }} FCFA
+                          </h6>
                         </div>
                       </div>
                       <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <button class="text-muted" (click)="removeProduct(item);plusTotal()"><i class="fas fa-times"></i></button>
+                        <button class="text-muted" (click)="removeProduct(item); plusTotal()">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                      <div class="row d-flex justify-content-between align-items-center w-100" *ngFor="let son of item.Boissons">
+                        <hr class="my-4" />
+                        <div class="col-md-2 col-lg-2 col-xl-2">
+                          <img
+                            src="{{ 'data:image/png;base64,' + son.image }}"
+                            class="img-fluid rounded-3"
+                          />
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-3">
+                          <h6 class="text-black mb-0">{{ son.nom }}</h6>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                          <button (click)="amount(son, quantity.value); plusTotal()" class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" >
+                            <i class="fas fa-minus"></i>
+                          </button>
+                          <input id="form1" min="1" name="quantity" #quantity value="1" type="number" class="form-control form-control-sm" (change)="amount(son, quantity.value); plusTotal()"/>
+                          <button (click)="amount(son, quantity.value); plusTotal()" class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                            <i class="fas fa-plus"></i>
+                          </button>
+                        </div>
+                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1 d-flex justify-content">
+                          <h6 class="mb-0">{{ son.prix }} FCFA</h6>
+                          <div>
+                            <h6 class="mb-0">
+                              {{ son.prix }} FCFA
+                            </h6>
+                          </div>
+                        </div>
+                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                          <button class="text-muted" (click)="removeProduct(son); plusTotal()">
+                            <i class="fas fa-times"></i>
+                          </button>
+                        </div>
                       </div>
                     </div>
-                    <hr class="my-4">
+                    <hr class="my-4" />
                   </div>
                 </div>
                 <div class="col-lg-4 bg-grey">
                   <div class="p-5">
                     <h3 class="fw-bold mb-5 mt-2 pt-1">Résumé</h3>
-                    <hr class="my-4">
+                    <hr class="my-4" />
                     <div class="d-flex justify-content-between mb-5">
                       <h5 class="text-uppercase">Prix Total</h5>
                       <div class="d-flex">
-                        <h5 id="prixGlobal" #prixGlobal>{{totalPrix}}</h5>
+                        <h5 id="prixGlobal" #prixGlobal>{{ totalPrix }}</h5>
                         <span class="mx-4">FCFA</span>
                       </div>
                     </div>
-                    <button type="button" class="mx-auto btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Procéder à la commande</button>
+                    <button type="button" class="mx-auto btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">
+                      Procéder à la commande
+                    </button>
                   </div>
                 </div>
               </div>
@@ -64,3 +108,39 @@
       </div>
     </div>
   </section>
+  <section class="section">
+    <div class="d-flex flex-column align-items-center">
+      <h1>Mode de récupération de votre commande</h1>
+      <div class="choice d-flex justify-content-evenly w-75 my-5">
+        <div class="form-check d-flex flex-column align-items-center text-center">
+          <label class="form-check-label"> Sur Place </label>
+          <div class="btn-group" data-bs-toggle="buttons">
+            <label class="btn border border-dark">
+              <input (click)="listerZone($event)" type="radio" name="commande" id="" value="surPlace">
+            </label>
+          </div>
+        </div>
+        <div class="form-check d-flex flex-column align-items-center text-center">
+          <label class="form-check-label"> En Livraison </label>
+          <div class="btn-group" data-bs-toggle="buttons">
+            <label class="btn border border-dark">
+              <input (click)="listerZone($event)" type="radio" name="commande" id="" value="livrer" >
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let zone of mesZones" class="d-flex flex-column">
+      <div class="zones d-flex justify-content-evenly">
+        <div>{{zone.nom}}</div>
+        <div>{{zone.prix_zone}} FCFA</div>
+        <div class="btn-group" role="group" data-bs-toggle="buttons">
+          <label class="btn border border-dark">
+            <input type="radio" class="me-2" name="zone" id="">Choisir
+          </label>
+        </div>
+      </div>
+      <hr class="my-4" />
+    </div>
+  </section>
+</body>

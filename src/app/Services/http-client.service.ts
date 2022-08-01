@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Produit } from '../models/first-model.model';
 
 @Injectable(
 {
@@ -9,45 +8,32 @@ import { Produit } from '../models/first-model.model';
 })
 export class HttpClientService
 {
-  private burgerUrl = "https://127.0.0.1:8000/api/burgers";
-  private menuUrl = "https://127.0.0.1:8000/api/menus";
+  burgerUrl = "https://127.0.0.1:8000/api/burgers";
+  menuUrl = "https://127.0.0.1:8000/api/menus";
+  boissonsUrl = "https://127.0.0.1:8000/api/boissons";
+  zoneUrl = "http://127.0.0.1:8000/api/zones";
 
-  tabMenu !: Produit[];
-  tabBurger !: Produit[];
+  tab !: any[];
 
+  constructor(private http : HttpClient) {}
 
-  constructor(private http : HttpClient) { }
-
-  getBurger() : Observable<any>
+/**************************************** Récupération des Observables ******** **************************/
+  getUrl(url : any) : Observable<any>
   {
-    return this.http.get(this.burgerUrl);
+    return this.http.get(url);
   }
-  getMenu() : Observable<any>
+/**************************************** Transition Observable en tableau *****************************/
+  obsToTab(observable : any)
   {
-    return this.http.get(this.menuUrl);
-  }
-  menuSubscribe()
-  {
-    this.getMenu().subscribe
+    this.getUrl(observable).subscribe
     (
-      value => {this.tabMenu = value}
+      value => {this.tab = value}
     )
-    return this.tabMenu;
+    return this.tab;
   }
-  burgerSubscribe()
+/**************************************** Recherche d'un produit par Id ****** **************************/
+  getElementById(id : number, observable : any)
   {
-    this.getBurger().subscribe
-    (
-      value => {this.tabBurger = value}
-    )
-    return this.tabBurger;
-  }
-  getMenuById(id : number)
-  {
-    return this.menuSubscribe().find(param => param.id === id);
-  }
-  getBurgerById(id : number)
-  {
-    return this.burgerSubscribe().find(param => param.id === id);
+    return this.obsToTab(observable).find(param => param.id === id);
   }
 }
