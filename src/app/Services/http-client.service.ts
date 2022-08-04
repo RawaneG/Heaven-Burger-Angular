@@ -12,11 +12,16 @@ export class HttpClientService
   menuUrl = "https://127.0.0.1:8000/api/menus";
   boissonsUrl = "https://127.0.0.1:8000/api/boissons";
   zoneUrl = "http://127.0.0.1:8000/api/zones";
+  commandeUrl = "https://127.0.0.1:8000/api/commandes";
 
   tab !: any[];
-
+  headers = { 'content-type': 'application/json'}
   constructor(private http : HttpClient) {}
 
+  postUrl(url : any, body : any)
+  {
+    this.http.post(url, body).subscribe();
+  }
 /**************************************** Récupération des Observables ******** **************************/
   getUrl(url : any) : Observable<any>
   {

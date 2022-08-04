@@ -13,9 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { MonPanierComponent } from './mon-panier/mon-panier.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MesCommandesComponent } from './mes-commandes/mes-commandes.component';
+import { CommandeDetailComponent } from './commande-detail/commande-detail.component';
 
 @NgModule({
-  declarations: [AppComponent, MyFirstComponent, ParentListComponent, HeaderComponent, LandingPageComponent, MySecondComponent, MenuDetailComponent, BurgerDetailComponent, MonPanierComponent],
+  declarations: [AppComponent, MyFirstComponent, ParentListComponent, HeaderComponent, LandingPageComponent, MySecondComponent, MenuDetailComponent, BurgerDetailComponent, MonPanierComponent, MesCommandesComponent, CommandeDetailComponent],
   imports: [BrowserModule,ReactiveFormsModule, AppRoutingModule, HttpClientModule, StoreModule.forRoot({}, {})],
   providers: [],
   bootstrap: [AppComponent]

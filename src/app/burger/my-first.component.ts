@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Produit } from '../models/first-model.model';
 import { CartService } from '../Services/cart.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component(
@@ -13,8 +14,12 @@ export class MyFirstComponent implements OnInit
 {
   @Input() burger!: Produit;
   ajoutee !: any;
-  constructor(private cartService: CartService) { }
+  constructor(private sanitaire : DomSanitizer, private cartService: CartService) { }
   ngOnInit() {}
+  convertion(image : any)
+  {
+    return this.sanitaire.bypassSecurityTrustResourceUrl("data:image/png;base64, " + image);
+  }
   addToCart(product : Produit)
   {
     this.cartService.items$.subscribe

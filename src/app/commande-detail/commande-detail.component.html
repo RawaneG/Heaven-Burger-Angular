@@ -1,0 +1,32 @@
+<body class="d-flex flex-column justify-content-center align-items-center">
+    <div class="presentation">
+        <h1 class="text-center my-4">Commande numéro {{mesCommandes.id}}</h1>
+        <h4 class="text-center my-4">Articles dans votre commande</h4>
+    </div>
+    <section class="d-flex w-75 p-4">
+        <div class="the-box w-50">
+            <div class="date-etat m-5 px-4 ">
+                <p><strong>{{mesCommandes.etat}}</strong></p>
+                <p><strong>Effectuée le : </strong> {{mesCommandes.date}}</p>
+                <p><strong>Total :</strong> {{mesCommandes.prix}} FCFA</p>
+            </div>
+            <div class="image-nom-prix d-flex align-items-center justify-content-center" *ngFor="let produit of mesCommandes.produits">
+                <div class="image my-3">
+                    <img [src]="convertion(produit.produit.image)" alt="Image Produit">
+                </div>
+                <div class="mx-5 nom-prix">
+                    <p>Nom : <strong>{{produit.produit.nom}}</strong></p>
+                    <p>Quantite : <strong>{{mesCommandes.prix / produit.produit.prix}}</strong></p>
+                    <p>Prix : <strong>{{produit.produit.prix}} FCFA</strong></p>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="mesCommandes.etat == 'En Cours'" class="annuler-commande w-50 d-flex justify-content-end align-items-end">
+            <button class="m-3">Annuler la Commande</button>
+        </div>
+    </section>
+    <section class="my-5">
+        <h4 class="p-4 ">Adresse de Livraison</h4>
+        <p class="text-center">{{mesCommandes.zone.nom}}</p>
+    </section>
+</body>

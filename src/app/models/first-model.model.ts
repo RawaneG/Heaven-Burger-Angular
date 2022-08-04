@@ -9,6 +9,14 @@ export class Produit
         public quantite: number
     ) { }
 }
+export class Commande
+{
+    constructor
+    (
+        public produits : [],
+        public prix : number
+    ) { }
+}
 export class Menu
 {
     constructor

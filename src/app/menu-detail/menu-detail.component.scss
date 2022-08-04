@@ -12,7 +12,13 @@
     box-shadow: lightgray 4px 4px 20px;
     width: 60%;
 }
-.parentBoiss
+.card-img-top
+{
+    width: 100%;
+    height: 20vw;
+    object-fit: contain;
+}
+.parentBoiss,.card
 {
     background-color: #f1f1f1;
 }
@@ -52,13 +58,13 @@
     background-color: #02142F;
     color: white;
 }
-.card
+.cart
 {
     transition: 0.5s ease-in-out;
     cursor: pointer;
 
 }
-.card:hover
+.cart:hover
 {
     box-shadow: lightgray 4px 4px 20px;
 }

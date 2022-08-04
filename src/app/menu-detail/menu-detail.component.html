@@ -11,40 +11,41 @@
         <button [hidden]="cachee" (click)="addToCart(monMenu);" class="addToCart">Ajouter au Panier</button>
     </div>
     <div class="right d-flex flex-column align-items-center justify-content-evenly">
-        <img src="{{'data:image/png;base64,' + monMenu.image}}" alt="produit-image">
+        <img [src]="convertion(monMenu.image)" alt="produit-image">
         <h2 class="my-4">{{monMenu.prix}} FCFA</h2>
     </div>
 </div>
+                                                    <!-- COMPOSANT COMPLEMENTS -->
 <div class="parentBoiss d-flex flex-column ">
     <div class="boutons">
-        <button class="title">Complétez votre Menu</button>
-        <!-- <button class="title">Frite (s)</button>
-        <button class="title">Burger (s)</button> -->
+        <button class="title">Boisson (s)</button>
+        <button class="title">Frite (s)</button>
+        <button class="title">Burger (s)</button>
     </div>
-    <div class="text-center d-flex flex-column align-items-center boissons">
-        <h3>Boissons</h3>
-        <h5>Vous devez choisir 2 boissons</h5>
-        <select class="form-select text-center w-25" multiple aria-label="multiple select example">
-            <option (click)="listeBoisson(taille.tailleBoisson.boissons)" *ngFor="let taille of monMenu.Boissons" value="{{ taille.tailleBoisson.valeurs }}">{{ taille.tailleBoisson.valeurs }}</option>
-        </select>
-    </div>
-    <div class="liste_boisson" class="d-flex flex-column align-items-center">
-        <span class="my-5">
-            <strong>{{this.monMenu.Boissons[0].quantite}}</strong> boissons de cette taille en Stock
-        </span>
-        <div class="d-flex justify-content-evenly w-100">
-            <div *ngFor="let boissons of lesBoissons[0]" class="text-center">
-                    <div class="card" style="width: 10rem;">
-                        <img class="card-img-top" src="{{'data:image/png;base64,' + boissons.image}}" alt="Title">
-                        <div class="card-body">
-                            <h4 class="card-title">{{boissons.nom | titlecase}}</h4>
-                            <p class="card-text">{{boissons.prix}} FCFA</p>
-                        </div>
+    <h3 class="text-center my-5">Nos larges variétés de boissons</h3>
+    <div *ngFor="let taille of monMenu.Boissons">
+        <h3 class="text-center my-5">{{taille.tailleBoisson.valeurs}} : {{taille.quantite}} boissons Stock</h3>
+        <section class="d-flex justify-content-evenly">
+            <div *ngFor="let boissons of taille.tailleBoisson.boissons" class="text-center d-flex flex-column align-items-center">
+                <div class="cart">
+                    <img class="card-img-top" [src]="convertion(boissons.image)" alt="Title">
+                    <div class="card-body">
+                        <h4 class="card-title">{{boissons.nom | titlecase}}</h4>
+                        <p class="card-text">{{boissons.prix}} FCFA</p>
                     </div>
-                    <div>
-                        <input type="checkbox" class="form-check-input" (click)="laBansson(boissons)" value="{{boissons.id + boissons.nom}}" name="myName" #myName>
+                </div>
+                <div class="choice d-flex flex-column align-items-center my-4">
+                    <div class="d-flex w-50">
+                        <button type="button" class="btn btn-link px-2" (click)="ajout(false , quantity)">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                            <input id="form1" value="{{compteur}}" #quantity type="number" class="form-control form-control-sm text-center" (change) = "enEntree()"/>
+                        <button type="button" class="btn btn-link px-2" (click)="ajout(true , quantity)">
+                            <i class="fas fa-plus"></i>
+                        </button>
                     </div>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
 </div>

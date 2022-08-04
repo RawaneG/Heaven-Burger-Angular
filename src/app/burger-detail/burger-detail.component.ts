@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientService } from '../Services/http-client.service';
 import { CartService } from '../Services/cart.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-burger-detail',
@@ -14,9 +15,11 @@ export class BurgerDetailComponent implements OnInit {
   parameter !: number;
   ajoutee !: any;
 
-
-  constructor(private route : ActivatedRoute, private router : Router, private httpService : HttpClientService, private cartService: CartService) {}
-
+  constructor(private sanitaire : DomSanitizer, private route : ActivatedRoute, private router : Router, private httpService : HttpClientService, private cartService: CartService) {}
+  convertion(image : any)
+  {
+    return this.sanitaire.bypassSecurityTrustResourceUrl("data:image/png;base64, " + image);
+  }
   addToCart(product : any)
   {
     this.cartService.items$.subscribe
@@ -30,7 +33,6 @@ export class BurgerDetailComponent implements OnInit {
         }
         else
         {
-          this.ajoutee = value.find(prod => prod.id === product.id);
           this.ajoutee.quantite++;
           this.cartService.saveEtat('produits',this.cartService.items$);
         }

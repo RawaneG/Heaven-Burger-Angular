@@ -37,7 +37,20 @@ border-bottom-right-radius: 16px;
     border: none;
     background: none;
 }
-.border-dark
+.border-dark,.check
 {
+    box-shadow: lightgray 4px 4px 20px;
+}
+.check
+{
+    background : none;
+    border: none;
+    padding: 1em 2em;
+    transition: 0.5s ease-in-out;
+}
+.check:hover
+{
+    background-color : black;
+    color: white;
     box-shadow: lightgray 4px 4px 20px;
 }

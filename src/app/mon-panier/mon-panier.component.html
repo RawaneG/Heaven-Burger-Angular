@@ -18,7 +18,7 @@
                       <hr class="my-4" />
                       <div class="col-md-2 col-lg-2 col-xl-2">
                         <img
-                          src="{{ 'data:image/png;base64,' + item.image }}"
+                          [src]="convertion(item.image )"
                           class="img-fluid rounded-3"
                         />
                       </div>
@@ -51,7 +51,7 @@
                         <hr class="my-4" />
                         <div class="col-md-2 col-lg-2 col-xl-2">
                           <img
-                            src="{{ 'data:image/png;base64,' + son.image }}"
+                            [src]="convertion(son.image)"
                             class="img-fluid rounded-3"
                           />
                         </div>
@@ -96,7 +96,7 @@
                         <span class="mx-4">FCFA</span>
                       </div>
                     </div>
-                    <button type="button" class="mx-auto btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">
+                    <button (click)="commander(items$)" [hidden]="cachee" routerLink="/catalogue" type="button" class="mx-auto btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">
                       Procéder à la commande
                     </button>
                   </div>
@@ -113,20 +113,10 @@
       <h1>Mode de récupération de votre commande</h1>
       <div class="choice d-flex justify-content-evenly w-75 my-5">
         <div class="form-check d-flex flex-column align-items-center text-center">
-          <label class="form-check-label"> Sur Place </label>
-          <div class="btn-group" data-bs-toggle="buttons">
-            <label class="btn border border-dark">
-              <input (click)="listerZone($event)" type="radio" name="commande" id="" value="surPlace">
-            </label>
-          </div>
+            <button (click)="modePaiement();listerZone($event)" value="surPlace" class="check">Sur Place</button>
         </div>
         <div class="form-check d-flex flex-column align-items-center text-center">
-          <label class="form-check-label"> En Livraison </label>
-          <div class="btn-group" data-bs-toggle="buttons">
-            <label class="btn border border-dark">
-              <input (click)="listerZone($event)" type="radio" name="commande" id="" value="livrer" >
-            </label>
-          </div>
+            <button (click)="modePaiement();listerZone($event)" value="livrer" class="check">En Livraison</button>
         </div>
       </div>
     </div>
@@ -136,7 +126,7 @@
         <div>{{zone.prix_zone}} FCFA</div>
         <div class="btn-group" role="group" data-bs-toggle="buttons">
           <label class="btn border border-dark">
-            <input type="radio" class="me-2" name="zone" id="">Choisir
+            <input type="radio" class="me-2 zone" name="zone" (click)="modePaiement()">Choisir
           </label>
         </div>
       </div>

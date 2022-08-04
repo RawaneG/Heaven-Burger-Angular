@@ -11,7 +11,7 @@
         <button (click)="addToCart(monBurger)">Ajouter au Panier</button>
     </div>
     <div class="right d-flex flex-column align-items-center justify-content-evenly">
-        <img src="{{'data:image/png;base64,' + monBurger.image}}" alt="produit-image">
+        <img [src]="convertion(monBurger.image)" alt="produit-image">
         <h2 class="my-4">{{monBurger.prix}} FCFA</h2>
     </div>
 </div>
