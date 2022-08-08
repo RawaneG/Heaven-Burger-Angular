@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Menu, Produit } from '../models/first-model.model';
-import { CartService } from '../Services/cart.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component(
@@ -13,15 +12,10 @@ export class MySecondComponent implements OnInit
 {
   clicked : boolean = false;
   @Input() menu!: Menu;
-  constructor(private sanitaire : DomSanitizer, private cartService: CartService) { }
+  constructor(private sanitaire : DomSanitizer) { }
   ngOnInit(): void{}
   convertion(image : any)
   {
     return this.sanitaire.bypassSecurityTrustResourceUrl("data:image/png;base64, " + image);
   }
-  addToCart(product : any)
-  {
-    this.cartService.addToCart(product);
-  }
-
 }

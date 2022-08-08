@@ -22,7 +22,7 @@
             </div>
         </div>
         <div *ngIf="mesCommandes.etat == 'En Cours'" class="annuler-commande w-50 d-flex justify-content-end align-items-end">
-            <button class="m-3">Annuler la Commande</button>
+            <button (click)="supprimer()" class="m-3">Annuler la Commande</button>
         </div>
     </section>
     <section class="my-5">

@@ -1,0 +1,21 @@
+<div class="cart">
+    <img class="card-img-top" [src]="convertion(maBoisson.image)" alt="Title">
+    <div class="card-body">
+        <h4 class="card-title">{{maBoisson.nom | titlecase}}</h4>
+        <p class="card-text">{{maBoisson.prix}} FCFA</p>
+    </div>
+</div>
+<div>
+    <input type="checkbox" class="form-check-input" (click)="laBansson(maBoisson)" name="myName" #myName >
+</div>
+<div class="choice d-flex justify-content-center align-items-center my-4">
+    <div class="d-flex justify-content-evenly align-items-center w-100">
+        <button *ngIf="beureukh > 0" class="btn btn-link px-2" (click)="decremente()">
+            <i class="fas fa-minus"></i>
+        </button>
+            <span class="span">{{beureukh}}</span>
+        <button type="button" class="btn btn-link px-2" (click)="incremente()">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+</div>

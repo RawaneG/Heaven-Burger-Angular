@@ -1,12 +1,15 @@
+<div class="search-hero my-5">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText">
+</div>
 <div class="container-fluid d-flex justify-content-evenly flex-wrap">
     <h1 class="my-5 text-center">Mes Burgers</h1>
     <div class="d-flex justify-content-evenly flex-wrap">
-        <app-my-first *ngFor="let unProduit of mesBurgers" [burger] = "unProduit"></app-my-first>
+        <app-my-first *ngFor="let unProduit of mesBurgers | filter:searchText" [burger] = "unProduit"></app-my-first>
     </div>
 </div>
 <div class="container-fluid d-flex justify-content-evenly flex-wrap">
     <h1 class="my-5 text-center">Mes Menus</h1>
     <div class="d-flex justify-content-evenly flex-wrap">
-        <app-my-second *ngFor="let unProduit of mesMenus" [menu] = "unProduit"></app-my-second>
+        <app-my-second *ngFor="let unProduit of mesMenus | filter:searchText" [menu] = "unProduit"></app-my-second>
     </div>
 </div>

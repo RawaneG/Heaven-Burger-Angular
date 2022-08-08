@@ -11,114 +11,49 @@ import { HttpClientService } from '../Services/http-client.service';
 })
 export class MenuDetailComponent implements OnInit
 {
-  compteur : number = 0;
-  sommeTotal : number = 0;
-  somme : number = 0;
+  maQuantiteTotale !: number;
+  autreMenus !: any;
+  menuSuggestions !: any;
+  qteTotal = 0;
+  somme !: number;
   quantite : any[]= [];
   bsonChoisie : any[] = [];
   cachee : boolean = true;
-  ajoutBoisson !: any;
-  lesBoissons: any[] = [];
   monMenu !: any;
   parameter !: number;
   ajoutee !: any;
   @Input() mesBoissons !: any;
 
+  message(event : any)
+  {
+    this.maQuantiteTotale = event;
+  }
   constructor( private sanitaire : DomSanitizer, private route: ActivatedRoute, private router: Router, private httpService: HttpClientService, private cartService: CartService) { }
 
   convertion(image : any)
   {
     return this.sanitaire.bypassSecurityTrustResourceUrl("data:image/png;base64, " + image);
   }
-  sommeQuantite()
-  {
-    let qteTotal = 0;
-    this.parameter = +this.route.snapshot.params['id'];
-    this.monMenu = this.httpService.getElementById(this.parameter, this.httpService.menuUrl);
-    this.monMenu.Boissons.forEach((element : any) =>
-    {
-      qteTotal += element.quantite;
-    });
-    return qteTotal;
-  }
-
-  enEntree()
-  {
-    let inputs = document.querySelectorAll('input');
-    inputs.forEach(element => this.quantite.push((+element.value)));
-    this.quantite.forEach
-    (
-      element =>
-      {
-          this.somme += element;
-          this.sommeTotal = this.somme;
-      }
-    )
-    this.quantite = [];
-    if (this.sommeTotal == this.sommeQuantite())
-    {
-      console.log("somme total : " + this.sommeTotal + " quantite total : " + this.sommeQuantite());
-      this.cachee = false;
-    }
-    else
-    {
-      console.log("somme total : " + this.sommeTotal + " quantite total : " + this.sommeQuantite());
-      this.cachee = true;
-    }
-    this.somme = 0;
-  }
-
-  ajout(operation : boolean, value : any)
-  {
-    if(operation === true)
-    {
-      this.compteur = +(value.value++);
-    }
-    else
-    {
-      this.compteur = +(value.value--);
-    }
-    let inputs = document.querySelectorAll('input');
-    inputs.forEach(element => this.quantite.push((+element.value)));
-    this.quantite.forEach
-    (
-      element =>
-      {
-          this.somme += element;
-          this.sommeTotal = this.somme;
-      }
-    )
-    if (this.sommeTotal == this.sommeQuantite())
-    {
-      console.log("somme total : " + this.sommeTotal + " quantite total : " + this.sommeQuantite());
-      this.cachee = false;
-    }
-    else
-    {
-      console.log("somme total : " + this.sommeTotal + " quantite total : " + this.sommeQuantite());
-      this.cachee = true;
-    }
-    this.quantite = [];
-  }
 
   addToCart(product: any)
   {
-    this.cartService.items$.subscribe
+      this.cartService.items$.subscribe
       (
         value =>
         {
           this.ajoutee = value.find(prod => prod.id === product.id);
+
           if (this.ajoutee === undefined)
           {
-            this.cartService.addToCart(product);
             product.Boissons = this.bsonChoisie;
+            this.cartService.addToCart(product);
             this.bsonChoisie = [];
             localStorage.setItem('boissonsChoisies', JSON.stringify(this.bsonChoisie));
           }
           else
           {
             this.ajoutee.quantite++;
-            this.cartService.saveEtat('produits', this.cartService.items$);
+            this.cartService.saveEtat('produits',this.cartService.items$);
           }
         }
       );
@@ -126,13 +61,15 @@ export class MenuDetailComponent implements OnInit
 
   ngOnInit(): void
   {
-
-    this.parameter = +this.route.snapshot.params['id'];
+    // this.parameter = +this.route.snapshot.params['id'];
+    this.route.params.subscribe(a => this.parameter = +a['id']);
     this.monMenu = this.httpService.getElementById(this.parameter, this.httpService.menuUrl);
-
-    if (this.monMenu === undefined)
+    this.menuSuggestions = this.httpService.getUrl(this.httpService.menuUrl);
+    this.autreMenus = this.httpService.obsToTab(this.menuSuggestions);
+    this.monMenu.Boissons.forEach((element : any) =>
     {
-      this.router.navigateByUrl('catalogue');
-    }
+      this.qteTotal += element.quantite;
+    });
+    this.somme = this.qteTotal;
   }
 }

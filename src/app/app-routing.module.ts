@@ -7,11 +7,13 @@ import { MenuDetailComponent } from './menu-detail/menu-detail.component';
 import { MonPanierComponent } from './mon-panier/mon-panier.component';
 import { MesCommandesComponent } from './mes-commandes/mes-commandes.component';
 import { CommandeDetailComponent } from './commande-detail/commande-detail.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes : Routes =
 [
   {path: '', component: LandingPageComponent},
   {path: 'catalogue' , component: ParentListComponent},
+  {path: 'admin' , component: AdminComponent},
   {path: 'panier' , component: MonPanierComponent},
   {path: 'commandes' , component: MesCommandesComponent},
   {path: 'commandes/:id' , component: CommandeDetailComponent},

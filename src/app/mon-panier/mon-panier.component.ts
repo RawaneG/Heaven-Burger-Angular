@@ -23,7 +23,8 @@ export class MonPanierComponent implements OnInit
   tabCommandes  : any = [];
   intermediaire : any = [];
   tabEntier : any = [];
-
+  maZone = 0;
+  body !: any;
   convertion(image : any)
   {
     return this.sanitaire.bypassSecurityTrustResourceUrl("data:image/png;base64, " + image);
@@ -36,76 +37,74 @@ export class MonPanierComponent implements OnInit
     );
     return this.tabCommandes;
   }
-
-  body =
+  getProduct()
   {
-    "client":
-    {
-        "id" : 3
-    },
-    "produits":
-    [
+    this.cartService.items$.subscribe
+    (
+      reponse =>
       {
-        "quantite": 5,
-        "produit":
+        this.tabCommandes = reponse;
+        this.tabCommandes.forEach((element : any) =>
         {
-            "id" : 40
-        }
+          this.intermediaire =
+          {
+            "quantite" : element.quantite,
+            "produit" :
+            {
+                "id" : element.id
+            }
+          }
+          this.tabEntier.push(this.intermediaire);
+        });
       }
-    ],
-    "zone":
-    {
-        "id" : 5
-    }
-  };
-  // body =
-  // {
-  //   "produits": this.getProduct()
-  // };
-  // getProduct()
-  // {
-  //   this.cartService.items$.subscribe
-  //   (
-  //     reponse =>
-  //     {
-  //       this.tabCommandes = reponse;
-  //       this.tabCommandes.forEach((element : any) =>
-  //       {
-  //         this.intermediaire =
-  //         {
-  //           "quantite" : element.quantite,
-  //           "produit" :
-  //           {
-  //               "id" : element.id
-  //           }
-  //         }
-  //         this.tabEntier.push(this.intermediaire);
-  //         // this.tabEntier.push(element.zone);
-  //       });
-  //     }
-  //   )
-  //   return this.tabEntier;
-  // }
-  commander(param : any)
-  {
-    this.httpService.postUrl(this.httpService.commandeUrl, this.body);
-    this.cartService.removeElement('produits',param);
-    this.cartService.removeElement('boissons',param);
+    )
+    return this.tabEntier;
   }
+
+  commander()
+  {
+    this.body =
+    {
+      "client" :
+      {
+        "id" : 3
+      },
+      "produits": this.getProduct(),
+      "zone" :
+      {
+        "id" : this.maZone
+      }
+    };
+    this.httpService.postUrl(this.httpService.commandeUrl, this.body);
+    this.cartService.removeAllElements('produits',this.cartService.items$);
+    this.cartService.removeAllElements('boissons',this.cartService.item2$);
+    location.reload();
+  }
+
   removeProduct(param : any)
   {
     this.cartService.removeElement('produits',param);
     this.modePaiement();
   }
+
   amount(param : Produit, value:any)
   {
     this.cartService.amount(param, value);
   }
+
   plusTotal()
   {
     this.totalPrix = this.cartService.ajoutTotal();
     return this.totalPrix;
   }
+
+  myZone(zone : any)
+  {
+    this.maZone = zone.id;
+    console.log(this.maZone);
+    return this.maZone;
+  }
+
   modePaiement()
   {
     let somme = 0;
@@ -118,21 +117,13 @@ export class MonPanierComponent implements OnInit
     {
       somme += element;
     });
-    console.log(somme);
     this.cartService.items$.subscribe
     (
       value => this.produits = value
     )
     if(this.produits.length > 0)
     {
-      if(somme != 0)
-      {
-        this.cachee = false;
-      }
-      else
-      {
-        this.cachee = true;
-      }
+      somme != 0 ? this.cachee = false : this.cachee = true;
     }
     else
     {
@@ -140,6 +131,7 @@ export class MonPanierComponent implements OnInit
     }
     somme = 0;
   }
+
   listerZone(event : Event)
   {
     const target = event.target as HTMLInputElement;
@@ -152,9 +144,22 @@ export class MonPanierComponent implements OnInit
     }
     else
     {
-      this.mesZones = null;
+      this.cartService.items$.subscribe
+      (
+        value => this.produits = value
+      )
+      if(this.produits.length > 0)
+      {
+        this.cachee = false;
+        this.mesZones = null;
+      }
+      else
+      {
+        this.cachee = true;
+      }
     }
   }
+
   ngOnInit(): void
   {
     this.items$?.subscribe(value => value);

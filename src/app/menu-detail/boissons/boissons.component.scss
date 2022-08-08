@@ -1,27 +1,3 @@
-.parent
-{
-    margin: 8% 0;
-}
-.left, .right
-{
-    height: 50vh;
-    width: 40%;
-}
-.right img, .boissons img,.sugMenu
-{
-    box-shadow: lightgray 4px 4px 20px;
-    width: 60%;
-    max-width: 100%;
-}
-.menuSug
-{
-    cursor: pointer;
-    transition: 0.5s ease-in-out;
-}
-.menuSug:hover
-{
-    transform: scale(1.3);
-}
 .card-img-top
 {
     max-width: 50%;
@@ -74,7 +50,10 @@
 {
     transition: 0.5s ease-in-out;
     cursor: pointer;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 .cart:hover
 {

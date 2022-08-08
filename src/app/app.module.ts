@@ -15,16 +15,20 @@ import { MonPanierComponent } from './mon-panier/mon-panier.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MesCommandesComponent } from './mes-commandes/mes-commandes.component';
 import { CommandeDetailComponent } from './commande-detail/commande-detail.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { BoissonsComponent } from './menu-detail/boissons/boissons.component';
+import { BurgersComponent } from './menu-detail/burgers/burgers.component';
+import { FritesComponent } from './menu-detail/frites/frites.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
-  declarations: [AppComponent, MyFirstComponent, ParentListComponent, HeaderComponent, LandingPageComponent, MySecondComponent, MenuDetailComponent, BurgerDetailComponent, MonPanierComponent, MesCommandesComponent, CommandeDetailComponent],
-  imports: [BrowserModule,ReactiveFormsModule, AppRoutingModule, HttpClientModule, StoreModule.forRoot({}, {})],
+  declarations: [AppComponent, MyFirstComponent, ParentListComponent, HeaderComponent, LandingPageComponent, MySecondComponent, MenuDetailComponent, BurgerDetailComponent, MonPanierComponent, MesCommandesComponent, CommandeDetailComponent, BoissonsComponent, BurgersComponent, FritesComponent, AdminComponent],
+  imports: [Ng2SearchPipeModule, BrowserModule,ReactiveFormsModule, AppRoutingModule, HttpClientModule, FormsModule, StoreModule.forRoot({}, {})],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule implements OnInit
 {
-
   ngOnInit(): void
   {
   }

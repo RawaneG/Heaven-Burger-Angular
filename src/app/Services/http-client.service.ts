@@ -13,11 +13,15 @@ export class HttpClientService
   boissonsUrl = "https://127.0.0.1:8000/api/boissons";
   zoneUrl = "http://127.0.0.1:8000/api/zones";
   commandeUrl = "https://127.0.0.1:8000/api/commandes";
+  commandeId = "https://127.0.0.1:8000/api/commandes/";
 
   tab !: any[];
-  headers = { 'content-type': 'application/json'}
   constructor(private http : HttpClient) {}
 
+  putUrl(url : any, body : any)
+  {
+    this.http.put(url, body).subscribe();
+  }
   postUrl(url : any, body : any)
   {
     this.http.post(url, body).subscribe();

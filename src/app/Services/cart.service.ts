@@ -26,8 +26,27 @@ export class CartService
     this._itemsSubject.next(existingCartItems);
   }
   /*
-    * Ajouter au Panier
+    * Suppression de tous les produits
   */
+ removeAllElements(title : string, observable : any)
+ {
+  observable.pipe(
+    take(1),
+    map((productsParam) =>
+    {
+      if(title == 'produits')
+      {
+        productsParam = [];
+        localStorage.setItem('produits', JSON.stringify(productsParam));
+      }
+      else
+      {
+        productsParam = [];
+        localStorage.setItem('boissons', JSON.stringify(productsParam));
+      }
+    }),
+  ).subscribe();
+ }
   addBansson(banssonParam: Boisson)
   {
     this.item2$.pipe(

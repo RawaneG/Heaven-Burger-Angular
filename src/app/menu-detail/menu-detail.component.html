@@ -8,44 +8,59 @@
             <p>Ici se trouve la description de votre produit</p>
             <p>Ici se trouve la description de votre produit</p>
         </div>
-        <button [hidden]="cachee" (click)="addToCart(monMenu);" class="addToCart">Ajouter au Panier</button>
+        <button (click)="addToCart(monMenu)" class="addToCart" *ngIf="maQuantiteTotale === qteTotal">Ajouter au Panier</button>
     </div>
     <div class="right d-flex flex-column align-items-center justify-content-evenly">
         <img [src]="convertion(monMenu.image)" alt="produit-image">
         <h2 class="my-4">{{monMenu.prix}} FCFA</h2>
     </div>
 </div>
-                                                    <!-- COMPOSANT COMPLEMENTS -->
+<!----------------------------------------------------- COMPOSANT COMPLEMENTS BOISSONS --------------------------------------------------------------------->
 <div class="parentBoiss d-flex flex-column ">
     <div class="boutons">
-        <button class="title">Boisson (s)</button>
-        <button class="title">Frite (s)</button>
-        <button class="title">Burger (s)</button>
+        <button class="title">Boissons</button>
     </div>
-    <h3 class="text-center my-5">Nos larges variétés de boissons</h3>
     <div *ngFor="let taille of monMenu.Boissons">
-        <h3 class="text-center my-5">{{taille.tailleBoisson.valeurs}} : {{taille.quantite}} boissons Stock</h3>
+        <h3 class="text-center my-2">{{taille.tailleBoisson.valeurs}} : {{taille.quantite}} boissons Stock</h3>
         <section class="d-flex justify-content-evenly">
-            <div *ngFor="let boissons of taille.tailleBoisson.boissons" class="text-center d-flex flex-column align-items-center">
-                <div class="cart">
-                    <img class="card-img-top" [src]="convertion(boissons.image)" alt="Title">
-                    <div class="card-body">
-                        <h4 class="card-title">{{boissons.nom | titlecase}}</h4>
-                        <p class="card-text">{{boissons.prix}} FCFA</p>
-                    </div>
-                </div>
-                <div class="choice d-flex flex-column align-items-center my-4">
-                    <div class="d-flex w-50">
-                        <button type="button" class="btn btn-link px-2" (click)="ajout(false , quantity)">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                            <input id="form1" value="{{compteur}}" #quantity type="number" class="form-control form-control-sm text-center" (change) = "enEntree()"/>
-                        <button type="button" class="btn btn-link px-2" (click)="ajout(true , quantity)">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <app-boissons (myOutputValue)="message($event)" class="d-flex flex-column align-items-center" *ngFor="let boissons of taille.tailleBoisson.boissons" [maBoisson]="boissons"></app-boissons>
         </section>
+    </div>
+</div>
+<!---------------------------------------------------------- COMPOSANT COMPLEMENTS BURGERS ------------------------------------------------------------------>
+<!-- <div class="parentBoiss d-flex flex-column border border-top-light">
+    <div class="boutons">
+        <button class="title">Burgers</button>
+    </div>
+    <div *ngFor="let taille of monMenu.Burgers">
+        <h3 class="text-center my-2">Burgers : {{taille.quantite}} Burgers Stock</h3>
+        <section class="text-center d-flex flex-column align-items-center">
+            <app-burgers (myOutputValue)="message($event)" class="d-flex flex-column align-items-center" *ngFor="let burgers of monMenu.Burgers" [maBurger]="burgers"></app-burgers>
+        </section>
+    </div>
+</div>
+ <-!-------------------------------------------------------- COMPOSANT COMPLEMENTS FRITES --------------------------------------------------------------->
+ <!-- <div class="parentBoiss d-flex flex-column border border-top-light">
+    <div class="boutons">
+        <button class="title">Frites</button>
+    </div>
+    <div *ngFor="let taille of monMenu.Frites">
+        <h3 class="text-center my-2">Frites : {{taille.quantite}} Frites Stock</h3>
+        <section class="text-center d-flex flex-column align-items-center">
+            <app-frites (myOutputValue)="message($event)" class="d-flex flex-column align-items-center" *ngFor="let frites of monMenu.Frites" [maFrite]="frites"></app-frites>
+        </section>
+    </div>
+</div> -->
+<!---------------------------------------- COMPOSANT MENUS COMPLÉMENTAIRES --------------------------------------->
+<div class="d-flex flex-column ">
+    <div class="boutons text-center m-5">
+        <h3>Vous pouvez aussi Commander</h3>
+    </div>
+    <div class="d-flex justify-content-evenly">
+        <div *ngFor="let menu of autreMenus.slice(0, 5); let i as index" class="d-flex flex-column align-items-center text-center menuSug" [routerLink]="['/menu', menu.id]">
+            <img class="sugMenu" [src]="convertion(menu.image)" alt="menu">
+            <p><strong>{{menu.nom}}</strong></p>
+            <p><strong>{{menu.prix}} </strong>FCFA</p>
+        </div>
     </div>
 </div>

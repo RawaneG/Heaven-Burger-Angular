@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../Services/http-client.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from '../Services/cart.service';
 
 @Component({
   selector: 'app-commande-detail',
@@ -13,7 +14,16 @@ export class CommandeDetailComponent implements OnInit
   mesCommandes !: any;
   parametre !: number;
 
-  constructor(private sanitaire : DomSanitizer, private route : ActivatedRoute, private router : Router, private httpService : HttpClientService) { }
+  body =
+    {
+      "etat": "Annulé"
+    };
+  supprimer()
+  {
+    this.httpService.putUrl(this.httpService.commandeUrl + '/' + this.mesCommandes.id, this.body)
+  }
+
+  constructor(private sanitaire : DomSanitizer, private route : ActivatedRoute, private router : Router, private httpService : HttpClientService, private cartService : CartService) { }
 
   convertion(image : any)
   {
@@ -24,9 +34,6 @@ export class CommandeDetailComponent implements OnInit
   {
     this.parametre = +this.route.snapshot.params['id'];
     this.mesCommandes = this.httpService.getElementById(this.parametre, this.httpService.commandeUrl);
-    console.log(this.mesCommandes);
-
-
   }
 
 }
