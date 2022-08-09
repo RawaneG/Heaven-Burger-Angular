@@ -22,24 +22,24 @@ export class BoissonsComponent implements OnInit
     return this.sanitaire.bypassSecurityTrustResourceUrl("data:image/png;base64, " + image);
   }
 
-  laBansson(product : any)
-  {
-      if (!this.bsonChoisie.includes(product))
-      {
-        this.bsonChoisie.push(product);
-        localStorage.setItem('boissonsChoisies', JSON.stringify(this.bsonChoisie));
-      }
-      else
-      {
-        const index = this.bsonChoisie.indexOf(product);
-        if (index > -1)
-        {
-          this.bsonChoisie.splice(index, 1);
-          localStorage.setItem('boissonsChoisies', JSON.stringify(this.bsonChoisie));
-        }
-      }
-  }
-  incremente()
+  // laBansson(product : any)
+  // {
+  //     if (!this.bsonChoisie.includes(product))
+  //     {
+  //       this.bsonChoisie.push(product);
+  //       localStorage.setItem('boissonsChoisies', JSON.stringify(this.bsonChoisie));
+  //     }
+  //     else
+  //     {
+  //       const index = this.bsonChoisie.indexOf(product);
+  //       if (index > -1)
+  //       {
+  //         this.bsonChoisie.splice(index, 1);
+  //         localStorage.setItem('boissonsChoisies', JSON.stringify(this.bsonChoisie));
+  //       }
+  //     }
+  // }
+  incremente(product : any)
   {
     this.beureukh++;
     let input = document.querySelectorAll('.span');
@@ -49,7 +49,7 @@ export class BoissonsComponent implements OnInit
     this.quantiteActuelle = 0;
   }
 
-  decremente()
+  decremente(product : any)
   {
     if(this.beureukh > 0)
     {

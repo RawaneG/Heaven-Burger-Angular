@@ -16,10 +16,12 @@ export class BurgerDetailComponent implements OnInit {
   ajoutee !: any;
 
   constructor(private sanitaire : DomSanitizer, private route : ActivatedRoute, private router : Router, private httpService : HttpClientService, private cartService: CartService) {}
+
   convertion(image : any)
   {
     return this.sanitaire.bypassSecurityTrustResourceUrl("data:image/png;base64, " + image);
   }
+
   addToCart(product : any)
   {
     this.cartService.items$.subscribe

@@ -8,7 +8,9 @@ import { HttpClientService } from '../Services/http-client.service';
 })
 export class AdminComponent implements OnInit {
 
-  mesCommandes : any = [];
+    searchText: any;
+    mesCommandes : any = [];
+
   constructor(private httpService: HttpClientService) { }
   ngOnInit(): void
   {

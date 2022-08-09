@@ -1,3 +1,6 @@
+<div class="search-hero my-5">
+    <input class="form-control" type="date" name="search" [(ngModel)]="searchText" placeholder="Filtrer">
+</div>
 <body>
     <div class="container-xl">
         <div class="table-responsive">
@@ -21,11 +24,11 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        <tr *ngFor="let commande of mesCommandes">
+                        <tr *ngFor="let commande of mesCommandes | filter:searchText">
                             <td>{{commande.id}}</td>
                             <td>{{commande.etat}}</td>
                             <td>{{commande.prix}}</td>
-                            <td>{{commande.client.telephone}}</td>
+                            <td>{{commande.client?.telephone}}</td>
                             <td>{{commande.date}}</td>
                             <td [routerLink]="['/commandes', commande.id]"><button class="btn btn-dark">Détails</button></td>
                         </tr>

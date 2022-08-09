@@ -20,6 +20,7 @@ import { BoissonsComponent } from './menu-detail/boissons/boissons.component';
 import { BurgersComponent } from './menu-detail/burgers/burgers.component';
 import { FritesComponent } from './menu-detail/frites/frites.component';
 import { AdminComponent } from './admin/admin.component';
+// import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [AppComponent, MyFirstComponent, ParentListComponent, HeaderComponent, LandingPageComponent, MySecondComponent, MenuDetailComponent, BurgerDetailComponent, MonPanierComponent, MesCommandesComponent, CommandeDetailComponent, BoissonsComponent, BurgersComponent, FritesComponent, AdminComponent],
