@@ -28,3 +28,54 @@ button:hover
     background-color: white;
     color: #02142F;
 }
+.parentBoiss,.card
+{
+    background-color: #02142F;
+    color: white;
+}
+.boissons
+{
+    padding: 3%;
+}
+.addToCart
+{
+    background-color: #02142F;
+    border: none;
+    color: white;
+    padding: 1.5% 3%;
+    font-size: 1.3rem;
+    border-radius: 1rem;
+    transition: 0.5s ease-in-out;
+}
+.addToCart:hover
+{
+    border: 2px solid #02142F;
+    background-color: white;
+    color: #02142F;
+}
+.title
+{
+    padding: 1% 3%;
+    text-align: center;
+    border-top: 1px solid white;
+    border-right: 1px solid #f1f1f1;
+    background-color: #02142F;
+    color: white;
+    transition: 0.5s ease-in-out;
+    font-size: 1.3rem;
+    border-radius: 0;
+}
+.title:hover
+{
+    background-color: white;
+    color: #02142F;
+}
+.cart
+{
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+}
+.cart:hover
+{
+    box-shadow: lightgray 4px 4px 20px;
+}

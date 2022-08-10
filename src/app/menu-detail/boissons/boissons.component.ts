@@ -60,10 +60,6 @@ export class BoissonsComponent implements OnInit
       this.myOutputValue.emit(this.quantiteActuelle);
       this.quantiteActuelle = 0;
     }
-    else
-    {
-      return;
-    }
   }
   ngOnInit(): void
   {

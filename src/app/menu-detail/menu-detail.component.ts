@@ -20,7 +20,7 @@ export class MenuDetailComponent implements OnInit
   bsonChoisie : any[] = [];
   cachee : boolean = true;
   monMenu !: any;
-  parameter !: number;
+  parameter !: any;
   ajoutee !: any;
   @Input() mesBoissons !: any;
 
@@ -58,14 +58,15 @@ export class MenuDetailComponent implements OnInit
         }
       );
   }
-
   ngOnInit(): void
   {
-    // this.parameter = +this.route.snapshot.params['id'];
-    this.route.params.subscribe(a => this.parameter = +a['id']);
-    this.monMenu = this.httpService.getElementById(this.parameter, this.httpService.menuUrl);
-    this.menuSuggestions = this.httpService.getUrl(this.httpService.menuUrl);
-    this.autreMenus = this.httpService.obsToTab(this.menuSuggestions);
+    this.route.paramMap.subscribe(a =>
+      {
+        this.parameter = a.get('id')
+        this.monMenu = this.httpService.getElementById(+this.parameter, this.httpService.menuUrl);
+        this.menuSuggestions = this.httpService.getUrl(this.httpService.menuUrl);
+        this.autreMenus = this.httpService.obsToTab(this.menuSuggestions);
+      });
     this.monMenu.Boissons.forEach((element : any) =>
     {
       this.qteTotal += element.quantite;

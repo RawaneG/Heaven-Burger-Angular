@@ -10,11 +10,12 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./burger-detail.component.scss']
 })
 export class BurgerDetailComponent implements OnInit {
-
+  quantiteActuelle = 0;
+  beureukh : number = 0;
   monBurger !: any;
   parameter !: number;
   ajoutee !: any;
-
+  mesBoissons : any;
   constructor(private sanitaire : DomSanitizer, private route : ActivatedRoute, private router : Router, private httpService : HttpClientService, private cartService: CartService) {}
 
   convertion(image : any)
@@ -41,15 +42,35 @@ export class BurgerDetailComponent implements OnInit {
       }
     );
   }
+  incremente(product : any)
+  {
+    this.beureukh++;
+    let input = document.querySelectorAll('.span');
+    input.forEach(a => this.quantiteActuelle += (+a.innerHTML));
+    this.quantiteActuelle = 0;
+  }
 
+  decremente(product : any)
+  {
+    if(this.beureukh > 0)
+    {
+      this.beureukh--;
+      let input = document.querySelectorAll('.span');
+      input.forEach(a => this.quantiteActuelle += (+a.innerHTML));
+      this.quantiteActuelle = 0;
+    }
+    else
+    {
+      return;
+    }
+  }
   ngOnInit(): void
   {
     this.parameter = +this.route.snapshot.params['id'];
     this.monBurger = this.httpService.getElementById(this.parameter, this.httpService.burgerUrl);
-
-    if(this.monBurger === undefined)
-    {
-      this.router.navigateByUrl('catalogue');
-    }
+    this.httpService.getUrl(this.httpService.boissonsUrl).subscribe
+    (
+      (reponse) => {console.log(this.mesBoissons = reponse)}
+    );
   }
 }

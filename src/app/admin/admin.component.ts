@@ -12,6 +12,17 @@ export class AdminComponent implements OnInit {
     mesCommandes : any = [];
 
   constructor(private httpService: HttpClientService) { }
+
+  body =
+    {
+      "etat": "Livré"
+    };
+  valider(commande : any)
+  {
+    this.httpService.putUrl(this.httpService.commandeUrl + '/' + commande, this.body);
+    location.reload();
+  }
+
   ngOnInit(): void
   {
     this.httpService.getUrl(this.httpService.commandeUrl).subscribe(data => this.mesCommandes = data);

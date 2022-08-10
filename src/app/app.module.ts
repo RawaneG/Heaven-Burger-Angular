@@ -1,4 +1,4 @@
-import { NgModule, OnInit } from '@angular/core';
+import {  NgModule, OnInit } from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { MyFirstComponent } from './burger/my-first.component';
@@ -20,11 +20,12 @@ import { BoissonsComponent } from './menu-detail/boissons/boissons.component';
 import { BurgersComponent } from './menu-detail/burgers/burgers.component';
 import { FritesComponent } from './menu-detail/frites/frites.component';
 import { AdminComponent } from './admin/admin.component';
-// import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [AppComponent, MyFirstComponent, ParentListComponent, HeaderComponent, LandingPageComponent, MySecondComponent, MenuDetailComponent, BurgerDetailComponent, MonPanierComponent, MesCommandesComponent, CommandeDetailComponent, BoissonsComponent, BurgersComponent, FritesComponent, AdminComponent],
-  imports: [Ng2SearchPipeModule, BrowserModule,ReactiveFormsModule, AppRoutingModule, HttpClientModule, FormsModule, StoreModule.forRoot({}, {})],
+  imports: [MatProgressBarModule,Ng2SearchPipeModule, BrowserModule,ReactiveFormsModule, AppRoutingModule, HttpClientModule, FormsModule, StoreModule.forRoot({}, {}), BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent]
 })

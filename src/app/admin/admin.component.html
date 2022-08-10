@@ -30,7 +30,10 @@
                             <td>{{commande.prix}}</td>
                             <td>{{commande.client?.telephone}}</td>
                             <td>{{commande.date}}</td>
-                            <td [routerLink]="['/commandes', commande.id]"><button class="btn btn-dark">Détails</button></td>
+                            <td class="d-flex justify-content-between">
+                                <button class="btn btn-primary" (click)="valider(commande.id)" *ngIf="commande.etat != 'Livré'">Valider</button>
+                                <button class="btn btn-dark" [routerLink]="['/commandes', commande.id]">Détails</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
