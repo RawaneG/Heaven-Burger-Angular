@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientService } from '../Services/http-client.service';
+import { HttpClientService } from '../../Services/http-client.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mes-commandes',
@@ -9,7 +10,7 @@ import { HttpClientService } from '../Services/http-client.service';
 export class MesCommandesComponent implements OnInit
 {
   mesCommandes : any = [];
-  constructor(private httpService: HttpClientService) { }
+  constructor(private httpService: HttpClientService, private route : ActivatedRoute) { }
   ngOnInit(): void
   {
     this.httpService.getUrl(this.httpService.commandeUrl).subscribe(data => this.mesCommandes = data);

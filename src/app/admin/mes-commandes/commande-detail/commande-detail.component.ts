@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientService } from '../Services/http-client.service';
+import { HttpClientService } from '../../../Services/http-client.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CartService } from '../Services/cart.service';
+import { CartService } from '../../../Services/cart.service';
 
 @Component({
   selector: 'app-commande-detail',
@@ -12,7 +12,7 @@ import { CartService } from '../Services/cart.service';
 export class CommandeDetailComponent implements OnInit
 {
   mesCommandes !: any;
-  parametre !: number;
+  parametre !: any;
 
   body =
     {
@@ -32,8 +32,23 @@ export class CommandeDetailComponent implements OnInit
 
   ngOnInit(): void
   {
-    this.parametre = +this.route.snapshot.params['id'];
-    this.mesCommandes = this.httpService.getElementById(this.parametre, this.httpService.commandeUrl);
+    this.route.paramMap.subscribe(
+      a =>
+      {
+        this.parametre = a.get('id');
+        if(this.parametre)
+        this.mesCommandes = this.httpService.getElementById(+this.parametre, this.httpService.commandeUrl);
+        if(this.mesCommandes)
+        {
+          console.log(this.mesCommandes);
+        }
+        else
+        {
+          console.log('ça retourne rien');
+        }
+      }
+      );
+    // this.parametre = +this.route.snapshot.params['id'];
   }
 
 }

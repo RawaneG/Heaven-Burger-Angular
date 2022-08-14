@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../Services/http-client.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -11,7 +12,7 @@ export class AdminComponent implements OnInit {
     searchText: any;
     mesCommandes : any = [];
 
-  constructor(private httpService: HttpClientService) { }
+  constructor(private httpService: HttpClientService,private route : ActivatedRoute) { }
 
   body =
     {

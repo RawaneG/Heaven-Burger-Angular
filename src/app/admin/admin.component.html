@@ -20,7 +20,7 @@
                             <th>Prix de la Commande</th>
                             <th>Téléphone</th>
                             <th>Date de délivrance</th>
-                            <th>Actions</th>
+                            <th colspan="2">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
@@ -29,10 +29,12 @@
                             <td>{{commande.etat}}</td>
                             <td>{{commande.prix}}</td>
                             <td>{{commande.client?.telephone}}</td>
-                            <td>{{commande.date}}</td>
-                            <td class="d-flex justify-content-between">
-                                <button class="btn btn-primary" (click)="valider(commande.id)" *ngIf="commande.etat != 'Livré'">Valider</button>
-                                <button class="btn btn-dark" [routerLink]="['/commandes', commande.id]">Détails</button>
+                            <td>{{commande.date | date}}</td>
+                            <td>
+                                <button class="btn btn-success" (click)="valider(commande.id)" *ngIf="commande.etat != 'Livré' && commande.etat != 'Annulé'">Valider</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-warning" [routerLink]="['/commandes', commande.id]">Détails</button>
                             </td>
                         </tr>
                     </tbody>
