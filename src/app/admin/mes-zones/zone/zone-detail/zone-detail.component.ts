@@ -11,6 +11,7 @@ export class ZoneDetailComponent implements OnInit
 {
   parameter : any;
   maZone : any;
+  mesLivreurs : any;
 
   constructor(private route : ActivatedRoute,private httpService : HttpClientService) { }
 
@@ -20,9 +21,11 @@ export class ZoneDetailComponent implements OnInit
       {
         this.parameter = a.get('id');
         this.maZone = this.httpService.getElementById(+this.parameter, this.httpService.zoneUrl);
-        console.log(this.maZone);
       });
-
+    this.httpService.getUrl(this.httpService.livreurUrl).subscribe
+    (
+      param => this.mesLivreurs = param
+    );
   }
 
 }

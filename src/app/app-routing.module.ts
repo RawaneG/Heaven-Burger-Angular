@@ -6,8 +6,9 @@ import { BurgerDetailComponent } from './burger-detail/burger-detail.component';
 import { MenuDetailComponent } from './menu-detail/menu-detail.component';
 import { MonPanierComponent } from './mon-panier/mon-panier.component';
 import { MesCommandesComponent } from './admin/mes-commandes/mes-commandes.component';
-import { CommandeDetailComponent } from './admin/mes-commandes/commande-detail/commande-detail.component';
+import { CommandeDetailComponent } from './admin/commande-detail/commande-detail.component';
 import { AdminModule } from './admin/admin.module';
+
 
 const routes : Routes =
 [

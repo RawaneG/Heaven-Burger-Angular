@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientService } from '../../../Services/http-client.service';
+import { HttpClientService } from '../../Services/http-client.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CartService } from '../../../Services/cart.service';
+import { CartService } from '../../Services/cart.service';
 
 @Component({
   selector: 'app-commande-detail',

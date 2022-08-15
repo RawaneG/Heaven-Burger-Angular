@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MonPanierComponent } from './mon-panier/mon-panier.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MesCommandesComponent } from './admin/mes-commandes/mes-commandes.component';
-import { CommandeDetailComponent } from './admin/mes-commandes/commande-detail/commande-detail.component';
+import { CommandeDetailComponent } from './admin/commande-detail/commande-detail.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BoissonsComponent } from './menu-detail/boissons/boissons.component';
 import { BurgersComponent } from './menu-detail/burgers/burgers.component';
@@ -27,11 +27,14 @@ import { MesProduitsComponent } from './admin/mes-produits/mes-produits.componen
 import { MaLivraisonComponent } from './admin/ma-livraison/ma-livraison.component';
 import { ZoneComponent } from './admin/mes-zones/zone/zone.component';
 import { ZoneDetailComponent } from './admin/mes-zones/zone/zone-detail/zone-detail.component';
+import { SpinnerComponent } from './Services/spinner/spinner.component';
 
 @NgModule({
-  declarations: [AppComponent, MyFirstComponent, ParentListComponent, HeaderComponent, LandingPageComponent, MySecondComponent, MenuDetailComponent, BurgerDetailComponent, MonPanierComponent, MesCommandesComponent, CommandeDetailComponent, BoissonsComponent, BurgersComponent, FritesComponent, AdminComponent, MesLivraisonsComponent, LivreurDetailComponent, NouveauProduitComponent, MesProduitsComponent, MaLivraisonComponent, ZoneComponent, ZoneDetailComponent],
+  declarations: [AppComponent, MyFirstComponent, ParentListComponent, HeaderComponent, LandingPageComponent, MySecondComponent, MenuDetailComponent, BurgerDetailComponent, MonPanierComponent, MesCommandesComponent, CommandeDetailComponent, BoissonsComponent, BurgersComponent, FritesComponent, AdminComponent, MesLivraisonsComponent, LivreurDetailComponent, NouveauProduitComponent, MesProduitsComponent, MaLivraisonComponent, ZoneComponent, ZoneDetailComponent, SpinnerComponent],
   imports: [MatProgressBarModule,Ng2SearchPipeModule, BrowserModule,ReactiveFormsModule, AppRoutingModule, HttpClientModule, FormsModule],
-  providers: [],
+  providers:
+  [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule implements OnInit

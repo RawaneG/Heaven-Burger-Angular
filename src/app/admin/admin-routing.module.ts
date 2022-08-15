@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CommandeDetailComponent } from './mes-commandes/commande-detail/commande-detail.component';
+import { CommandeDetailComponent } from './commande-detail/commande-detail.component';
 import { AdminComponent } from './admin.component';
 import { MaLivraisonComponent } from './ma-livraison/ma-livraison.component';
 import { LivreurDetailComponent } from './livreur-detail/livreur-detail.component';

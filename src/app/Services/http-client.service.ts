@@ -11,11 +11,13 @@ export class HttpClientService
   burgerUrl = "https://127.0.0.1:8000/api/burgers";
   menuUrl = "https://127.0.0.1:8000/api/menus";
   boissonsUrl = "https://127.0.0.1:8000/api/boissons";
-  zoneUrl = "http://127.0.0.1:8000/api/zones";
+  zoneUrl = "https://127.0.0.1:8000/api/zones";
   commandeUrl = "https://127.0.0.1:8000/api/commandes";
   commandeId = "https://127.0.0.1:8000/api/commandes/";
+  livreurUrl = "https://127.0.0.1:8000/api/livreurs";
 
   tab !: any[];
+
   constructor(private http : HttpClient) {}
 
   putUrl(url : any, body : any)
