@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body
+{
+  color: #48525c;
+}
+label
+{
+	cursor: pointer;
+	position: relative;
+}
+span
+{
+	position: absolute;
+	top: 25%;
+}
+.image
+{
+	display: none;
+}
+div.formC{
+  width: 400px;
+	max-width: 86%;
+	min-height: 500px;
+	padding: 1rem;
+	border-radius: 4px;
+	box-shadow: lightgray 4px 4px 20px;
+  	background: #f6f6f6;
+	margin: 10vh auto;
+	overflow: hidden;
+}
+div.formC>.title
+{
+	text-align: center;
+	margin: 3rem auto;
+}
+div.formC>form
+{
+  display: block;
+}
+div.formC>form>input, div.formC>form>button, label
+{
+		outline: none;
+		border: none;
+		display: block;
+		font-size: 1rem;
+		margin: 2rem auto;
+}
+div.formC>form>input, label{
+		width: 100%;
+		height: 3rem;
+		padding: 0 1rem;
+		color: #48525c;
+		border-radius: 2rem;
+		background: #f6f6f6;
+		box-shadow: inset 3px 3px 7px rgb(187 187 187 / 48%), inset -6px -6px 7px #ffffff;
+}
+div.formC>form>input:focus, label:focus{
+		box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9, 7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
+}
+div.formC>form>input::placeholder{
+		font-size: 80%;
+}
+div.formC>form>button{
+		cursor: pointer;
+		padding: .6rem 1.4rem;
+		width: 100%;
+		text-align: center;
+		border-radius: 2rem;
+		color: white;
+		background: #2962ff;
+		box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9, 7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
+}
+div.formC>form>button:hover{
+		opacity: 90%;
+}
+div.bottom{
+		font-size: 80%;
+		text-align: center;
+		margin: 6rem auto 1rem auto;
+}
+div.bottom>a{
+		color: #48525c;
+		text-decoration: underline;
+}
+div.bottom>a.Dblock{
+  display: block;
+}
+@media only screen and (min-width: 768px) {
+		div.formC{
+				padding: 1rem 2rem;
+		}
+		div.formC>form>button{
+				margin: 2rem 0;
+		}
+		div.bottom{
+		font-size: 80%;
+		text-align: center;
+		margin: 7rem auto 1rem auto;
+  }
+}

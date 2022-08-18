@@ -1,1 +1,14 @@
-<p>nouveau-produit works!</p>
+<body>
+    <div class="formC">
+            <h2 class="title">Ajouter un Produit</h2>
+            <form>
+                <input type="text" placeholder="Nom du produit"/>
+                <input type="number" placeholder="Prix du produit">
+                <label for="image">
+                    <span>Veuillez entrer une image</span>
+                    <input id="image" type="file" placeholder="Image du produit" class="image">
+                </label>
+                <button (click)="submit()">Ajouter</button>
+            </form>
+    </div>
+</body>

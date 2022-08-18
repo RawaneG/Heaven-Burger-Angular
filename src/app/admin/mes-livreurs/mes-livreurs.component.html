@@ -1,0 +1,11 @@
+<h1 class="text-center my-5">Mes Livreurs</h1>
+<div class="d-flex justify-content-evenly flex-wrap">
+    <div class="card text-center bg-light my-5" *ngFor="let livreur of mesLivreurs" [routerLink]="['/admin/livraisons/livreur', livreur.id]">
+        <div class="card-body flex-wrap">
+            <h4 class="card-title">Prénom : {{livreur.prenom}}</h4>
+            <h4 class="card-title">Nom : {{livreur.nom}}</h4>
+            <h4 class="card-title">État : {{livreur.etat}}</h4>
+        </div>
+        <button class="btn btn-dark" [routerLink]="['/admin/livraisons/livreur', livreur.id]">Détails Livreur</button>
+      </div>
+</div>

@@ -20,16 +20,13 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="mesCommandes.etat == 'En Cours'" class="annuler-commande w-50 d-flex justify-content-end align-items-end">
-            <button (click)="supprimer()" class="m-3">Annuler la Commande</button>
-        </div>
     </section>
     <div class="d-flex justify-content-evenly w-75">
-        <section class="my-5" *ngIf="mesCommandes.etat == 'Livré'">
-            <h4 class="p-4 ">Livré Par : </h4>
+        <section class="my-5">
+            <h4 class="p-4">Livré Par : </h4>
             <p class="text-center">{{mesCommandes.livraison.livreur.prenom}} {{mesCommandes.livraison.livreur.nom}}</p>
         </section>
-        <section class="my-5" *ngIf="mesCommandes.etat != 'Payé'">
+        <section class="my-5">
             <h4 class="p-4 text-center">Adresse de Livraison</h4>
             <p class="text-center">{{mesCommandes.zone.nom}}</p>
             <h4 class="p-4 text-center">Prix de Livraison</h4>

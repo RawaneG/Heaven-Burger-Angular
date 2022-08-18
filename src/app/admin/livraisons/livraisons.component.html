@@ -7,12 +7,8 @@
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="d-flex flex-column align-items-center">
-                        <div class=""><h1>Mes Commandes</h1></div>
+                        <div class=""><h1>Mes Livraisons</h1></div>
                         <div class="d-flex justify-content-evenly">
-                            <div class="zones my-3" routerLink="zone"><h2>Mes Zones</h2></div>
-                            <div class="zones my-3" routerLink="../livraisons/livreur"><h2>Mes Livreurs</h2></div>
-                            <div class="zones my-3" routerLink="../livraisons"><h2>Mes Livraisons</h2></div>
-                            <div class="zones my-3" routerLink="../produits"><h2>Mes Produits</h2></div>
                         </div>
                     </div>
                 </div>
@@ -28,17 +24,14 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        <tr *ngFor="let commande of mesCommandes | filter:dateActuelle">
+                        <tr *ngFor="let commande of mesLivraisons | filter:dateActuelle">
                             <td>{{commande?.id}}</td>
                             <td>{{commande?.etat}}</td>
                             <td>{{commande?.prix}}</td>
                             <td>{{commande?.client?.telephone}}</td>
                             <td>{{commande?.date | date : 'fullDate'}}</td>
                             <td>
-                                <button class="btn btn-success" (click)="valider(commande.id)" *ngIf="commande.etat === 'En Cours'">Valider</button>
-                            </td>
-                            <td>
-                                <button class="btn btn-warning" [routerLink]="['/commande', commande.id]">Détails</button>
+                                <button class="btn btn-warning" [routerLink]="['/admin/livraisons', commande.id]">Détails</button>
                             </td>
                         </tr>
                     </tbody>

@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommandeDetailComponent } from './commande-detail/commande-detail.component';
 import { AdminComponent } from './admin.component';
-import { MaLivraisonComponent } from './ma-livraison/ma-livraison.component';
-import { LivreurDetailComponent } from './livreur-detail/livreur-detail.component';
+import { MaLivraisonComponent } from './livraisons/ma-livraison/ma-livraison.component';
+import { LivreurDetailComponent } from './mes-livreurs/livreur-detail/livreur-detail.component';
 import { MesLivraisonsComponent } from './mes-zones/mes-livraisons.component';
 import { NouveauProduitComponent } from './nouveau-produit/nouveau-produit.component';
 import { MesProduitsComponent } from './mes-produits/mes-produits.component';
 import { ZoneComponent } from './mes-zones/zone/zone.component';
 import { ZoneDetailComponent } from './mes-zones/zone/zone-detail/zone-detail.component';
+import { LivraisonsComponent } from './livraisons/livraisons.component';
+import { MesLivreursComponent } from './mes-livreurs/mes-livreurs.component';
 
 const routes: Routes =
 [
@@ -45,7 +47,6 @@ const routes: Routes =
             path: '',
             children :
             [
-              {path:':id', component: MaLivraisonComponent},
               {
                 path:'livreur',
                 children:
@@ -55,11 +56,13 @@ const routes: Routes =
                       children:
                         [
                           {path: ':id', component: LivreurDetailComponent},
+                          {path: '', component: MesLivreursComponent},
                         ]
                     }
                   ]
               },
-              {path:'', component: MesLivraisonsComponent},
+              {path:':id', component: MaLivraisonComponent},
+              {path:'', component: LivraisonsComponent},
             ]
           },
         ]

@@ -1,35 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientService } from '../../Services/http-client.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CartService } from '../../Services/cart.service';
+import { HttpClientService } from '../../../Services/http-client.service';
+import { CartService } from '../../../Services/cart.service';
 
 @Component({
-  selector: 'app-commande-detail',
-  templateUrl: './commande-detail.component.html',
-  styleUrls: ['./commande-detail.component.scss']
+  selector: 'app-ma-livraison',
+  templateUrl: './ma-livraison.component.html',
+  styleUrls: ['./ma-livraison.component.scss']
 })
-export class CommandeDetailComponent implements OnInit
+export class MaLivraisonComponent implements OnInit
 {
   mesCommandes !: any;
   parametre !: any;
 
-  body =
-    {
-      "etat": "Annulé"
-    };
-  supprimer()
-  {
-    this.httpService.putUrl(this.httpService.commandeUrl + '/' + this.mesCommandes.id, this.body)
-  }
-
   constructor(private sanitaire : DomSanitizer, private route : ActivatedRoute, private router : Router, private httpService : HttpClientService, private cartService : CartService) { }
-
   convertion(image : any)
   {
     return this.sanitaire.bypassSecurityTrustResourceUrl("data:image/png;base64, " + image);
   }
-
   ngOnInit(): void
   {
     this.route.paramMap.subscribe(a =>

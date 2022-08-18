@@ -25,6 +25,8 @@ export class MonPanierComponent implements OnInit
   tabEntier : any = [];
   maZone = 0;
   body !: any;
+  zonePrix : any;
+
   convertion(image : any)
   {
     return this.sanitaire.bypassSecurityTrustResourceUrl("data:image/png;base64, " + image);
@@ -63,22 +65,38 @@ export class MonPanierComponent implements OnInit
 
   commander()
   {
-    this.body =
+    if(this.maZone === 0)
     {
-      "client" :
+      this.body =
       {
-        "id" : 3
-      },
-      "produits": this.getProduct(),
-      "zone" :
+        "client" :
+        {
+          "id" : 3
+        },
+        "produits": this.getProduct()
+      };
+    }
+    else
+    {
+      this.body =
       {
-        "id" : this.maZone
-      }
-    };
+        "client" :
+        {
+          "id" : 3
+        },
+        "produits": this.getProduct(),
+        "zone" :
+        {
+          "id" : this.maZone
+        }
+      };
+    }
     this.httpService.postUrl(this.httpService.commandeUrl, this.body);
     this.cartService.removeAllElements('produits',this.cartService.items$);
     this.cartService.removeAllElements('boissons',this.cartService.item2$);
-    location.reload();
+    setTimeout(() => {
+      location.reload();
+    }, 3000);
   }
 
   removeProduct(param : any)
@@ -92,18 +110,19 @@ export class MonPanierComponent implements OnInit
     this.cartService.amount(param, value);
   }
 
+  myZone(zone : any)
+  {
+    this.maZone = zone.id;
+    this.zonePrix = zone.prix_zone;
+    this.totalPrix = this.plusTotal() + this.zonePrix;
+  }
+
   plusTotal()
   {
     this.totalPrix = this.cartService.ajoutTotal();
     return this.totalPrix;
   }
 
-  myZone(zone : any)
-  {
-    this.maZone = zone.id;
-    console.log(this.maZone);
-    return this.maZone;
-  }
 
   modePaiement()
   {

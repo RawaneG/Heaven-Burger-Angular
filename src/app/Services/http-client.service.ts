@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { timeout } from "rxjs/operators";
+import { SpinnerService } from './spinner/spinner.service';
+import { DatePipe } from '@angular/common';
 
 @Injectable(
 {
@@ -15,15 +18,18 @@ export class HttpClientService
   commandeUrl = "https://127.0.0.1:8000/api/commandes";
   commandeId = "https://127.0.0.1:8000/api/commandes/";
   livreurUrl = "https://127.0.0.1:8000/api/livreurs";
+  livraisonUrl = "https://127.0.0.1:8000/api/livraisons";
 
   tab !: any[];
 
-  constructor(private http : HttpClient) {}
+  constructor(private http : HttpClient, private spinner : SpinnerService) {}
 
+/**************************************** Récupération des Observables ******** **************************/
   putUrl(url : any, body : any)
   {
     this.http.put(url, body).subscribe();
   }
+/**************************************** Récupération des Observables ******** **************************/
   postUrl(url : any, body : any)
   {
     this.http.post(url, body).subscribe();
@@ -31,7 +37,7 @@ export class HttpClientService
 /**************************************** Récupération des Observables ******** **************************/
   getUrl(url : any) : Observable<any>
   {
-    return this.http.get(url);
+    return this.http.get<any[]>(url);
   }
 /**************************************** Transition Observable en tableau *****************************/
   obsToTab(observable : any)
@@ -43,8 +49,8 @@ export class HttpClientService
     return this.tab;
   }
 /**************************************** Recherche d'un produit par Id ****** **************************/
-  getElementById(id : number, observable : any)
+  getElementById(id : number, tableau : any)
   {
-    return this.obsToTab(observable).find(param => param.id === id);
+    return tableau.find((param : any) => param.id === id);
   }
 }

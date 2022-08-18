@@ -1,0 +1,32 @@
+<body class="d-flex flex-column align-items-center">
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-8"><h2>{{monLivreur.prenom}} {{monLivreur.nom}}</h2></div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover table-bordered">
+                    <thead class="text-center">
+                        <tr>
+                            <th>Commande ID</th>
+                            <th>Prix Commande</th>
+                            <th>Finaliser</th>
+                            <th>Annuler</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center" *ngFor="let commande of monLivreur.livraisons">
+                        <tr *ngFor="let commandes of commande.commandes">
+                            <td>Commande numéro {{commandes.id}}</td>
+                            <td>{{commandes.prix}} FCFA</td>
+                            <td><button class="btn btn-outline-success" (click)="changeState('finaliser', commandes)">Finaliser</button></td>
+                            <td><button class="btn btn-outline-primary" (click)="changeState('annuler',commandes)">Annuler</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <button (click)="dispo(monLivreur.id)" class="btn btn-outline-dark">Mettre à Jour le Livreur</button>
+    </body>

@@ -12,8 +12,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class BurgerDetailComponent implements OnInit {
   quantiteActuelle = 0;
   beureukh : number = 0;
-  monBurger !: any;
-  parameter !: number;
+  monBurger : any = [];
+  parameter !: any;
   ajoutee !: any;
   mesBoissons : any;
   constructor(private sanitaire : DomSanitizer, private route : ActivatedRoute, private router : Router, private httpService : HttpClientService, private cartService: CartService) {}
@@ -66,11 +66,19 @@ export class BurgerDetailComponent implements OnInit {
   }
   ngOnInit(): void
   {
-    this.parameter = +this.route.snapshot.params['id'];
-    this.monBurger = this.httpService.getElementById(this.parameter, this.httpService.burgerUrl);
-    this.httpService.getUrl(this.httpService.boissonsUrl).subscribe
-    (
-      (reponse) => {console.log(this.mesBoissons = reponse)}
-    );
+    this.route.paramMap.subscribe(a =>
+      {
+      this.parameter = a.get('id');
+      });
+    this.httpService.getUrl(this.httpService.burgerUrl).subscribe(
+      (reponse) =>
+      {
+        this.monBurger = reponse
+        this.monBurger = this.httpService.getElementById(+this.parameter, this.monBurger);
+      });
+    this.httpService.getUrl(this.httpService.boissonsUrl).subscribe((reponse) =>
+      {
+        this.mesBoissons = reponse
+      });
   }
 }

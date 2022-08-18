@@ -19,7 +19,7 @@ export class MenuDetailComponent implements OnInit
   quantite : any[]= [];
   bsonChoisie : any[] = [];
   cachee : boolean = true;
-  monMenu !: any;
+  monMenu : any = [];
   parameter !: any;
   ajoutee !: any;
   @Input() mesBoissons !: any;
@@ -63,14 +63,18 @@ export class MenuDetailComponent implements OnInit
     this.route.paramMap.subscribe(a =>
       {
         this.parameter = a.get('id')
-        this.monMenu = this.httpService.getElementById(+this.parameter, this.httpService.menuUrl);
-        this.menuSuggestions = this.httpService.getUrl(this.httpService.menuUrl);
-        this.autreMenus = this.httpService.obsToTab(this.menuSuggestions);
       });
-    this.monMenu.Boissons.forEach((element : any) =>
-    {
-      this.qteTotal += element.quantite;
-    });
-    this.somme = this.qteTotal;
+    this.httpService.getUrl(this.httpService.menuUrl).subscribe(
+        (reponse) =>
+        {
+          this.monMenu = reponse;
+          this.autreMenus = reponse;
+          this.monMenu = this.httpService.getElementById(+this.parameter, this.monMenu);
+          this.monMenu.Boissons.forEach((element : any) =>
+          {
+            this.qteTotal += element.quantite;
+          });
+          this.somme = this.qteTotal;
+        });
   }
 }
